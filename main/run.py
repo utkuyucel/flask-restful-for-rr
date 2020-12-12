@@ -16,12 +16,12 @@ class Out(Resource):
 
 
 class Multi(Resource):
-	def get(self, num):
-		calculate = Calculate(num, 3500, 4)._run()
+	def get(self, total, num):
+		calculate = Calculate(num, total, 4)._run()
 		return jsonify({"value":calculate})
 
 api.add_resource(Out, "/")
-api.add_resource(Multi, "/rr/<float:num>")
+api.add_resource(Multi, "/rr/<int:total>/<float:num>")
 
 
 if __name__ == "__main__":
