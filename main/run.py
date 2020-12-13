@@ -18,7 +18,8 @@ class Out(Resource):
 class Multi(Resource):
 	def get(self, total, num):
 		calculate = Calculate(num, total, 4)._run()
-		return jsonify({"value":calculate})
+		percentage = round((100 * (calculate / total)), 2)
+		return jsonify({"value":calculate, "percentage":percentage})
 
 api.add_resource(Out, "/")
 api.add_resource(Multi, "/rr/<int:total>/<float:num>")
